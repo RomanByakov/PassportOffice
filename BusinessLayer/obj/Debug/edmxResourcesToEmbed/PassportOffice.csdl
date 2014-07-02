@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PassOfficeModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="PassportContext" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="PassportDatas" EntityType="PassOfficeModel.PassportData" />
+    <EntitySet Name="UserAuthorizations" EntityType="PassOfficeModel.UserAuthorization" />
+    <EntitySet Name="Cities" EntityType="PassOfficeModel.City" />
+    <EntitySet Name="Sexes" EntityType="PassOfficeModel.Sex" />
+    <AssociationSet Name="FK_Cities_Cities" Association="PassOfficeModel.FK_Cities_Cities">
+      <End Role="City" EntitySet="Cities" />
+      <End Role="City1" EntitySet="Cities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PassportData_Cities" Association="PassOfficeModel.FK_PassportData_Cities">
+      <End Role="City" EntitySet="Cities" />
+      <End Role="PassportData" EntitySet="PassportDatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PassportData_Sex" Association="PassOfficeModel.FK_PassportData_Sex">
+      <End Role="Sex" EntitySet="Sexes" />
+      <End Role="PassportData" EntitySet="PassportDatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sex_Sex" Association="PassOfficeModel.FK_Sex_Sex">
+      <End Role="Sex" EntitySet="Sexes" />
+      <End Role="Sex1" EntitySet="Sexes" />
+    </AssociationSet>
+    <EntitySet Name="Passports" EntityType="PassOfficeModel.Passport" />
+  </EntityContainer>
+  <EntityType Name="PassportData">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="true" />
+    <Property Name="Surname" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="true" />
+    <Property Name="Patronymic" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="true" />
+    <Property Name="PassportNumber" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+    <Property Name="Sex" Type="Int32" Nullable="false" />
+    <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="City" Type="Int32" Nullable="false" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="true" />
+    <Property Name="IssuedBy" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="true" />
+    <Property Name="DateOfIssue" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Code" Type="String" Nullable="false" MaxLength="7" Unicode="true" FixedLength="true" />
+    <NavigationProperty Name="City1" Relationship="PassOfficeModel.FK_PassportData_Cities" FromRole="PassportData" ToRole="City" />
+    <NavigationProperty Name="Sex1" Relationship="PassOfficeModel.FK_PassportData_Sex" FromRole="PassportData" ToRole="Sex" />
+  </EntityType>
+  <EntityType Name="UserAuthorization">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Login" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="true" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="City1" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Cities1" Relationship="PassOfficeModel.FK_Cities_Cities" FromRole="City" ToRole="City1" />
+    <NavigationProperty Name="City2" Relationship="PassOfficeModel.FK_Cities_Cities" FromRole="City1" ToRole="City" />
+    <NavigationProperty Name="PassportDatas" Relationship="PassOfficeModel.FK_PassportData_Cities" FromRole="City" ToRole="PassportData" />
+  </EntityType>
+  <EntityType Name="Sex">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Gender" Nullable="false" MaxLength="3" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="PassportDatas" Relationship="PassOfficeModel.FK_PassportData_Sex" FromRole="Sex" ToRole="PassportData" />
+    <NavigationProperty Name="Sex1" Relationship="PassOfficeModel.FK_Sex_Sex" FromRole="Sex" ToRole="Sex1" />
+    <NavigationProperty Name="Sex2" Relationship="PassOfficeModel.FK_Sex_Sex" FromRole="Sex1" ToRole="Sex" />
+  </EntityType>
+  <Association Name="FK_Cities_Cities">
+    <End Type="PassOfficeModel.City" Role="City" Multiplicity="1" />
+    <End Type="PassOfficeModel.City" Role="City1" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="City1">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PassportData_Cities">
+    <End Type="PassOfficeModel.City" Role="City" Multiplicity="1" />
+    <End Type="PassOfficeModel.PassportData" Role="PassportData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PassportData">
+        <PropertyRef Name="City" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PassportData_Sex">
+    <End Type="PassOfficeModel.Sex" Role="Sex" Multiplicity="1" />
+    <End Type="PassOfficeModel.PassportData" Role="PassportData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sex">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PassportData">
+        <PropertyRef Name="Sex" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sex_Sex">
+    <End Type="PassOfficeModel.Sex" Role="Sex" Multiplicity="1" />
+    <End Type="PassOfficeModel.Sex" Role="Sex1" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Sex">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sex1">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Passport">
+    <Key>
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="Surname" />
+      <PropertyRef Name="Patronymic" />
+      <PropertyRef Name="PassportNumber" />
+      <PropertyRef Name="Birthday" />
+      <PropertyRef Name="City" />
+      <PropertyRef Name="Address" />
+      <PropertyRef Name="IssuedBy" />
+      <PropertyRef Name="DateOfIssue" />
+      <PropertyRef Name="Code" />
+      <PropertyRef Name="Sex" />
+    </Key>
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="Surname" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="Patronymic" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="PassportNumber" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Type="DateTime" Name="Birthday" Nullable="false" Precision="0" />
+    <Property Type="String" Name="City" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="Address" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="IssuedBy" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Type="DateTime" Name="DateOfIssue" Nullable="false" Precision="0" />
+    <Property Type="String" Name="Code" Nullable="false" MaxLength="7" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="Sex" Nullable="false" MaxLength="3" FixedLength="true" Unicode="true" />
+  </EntityType>
+</Schema>

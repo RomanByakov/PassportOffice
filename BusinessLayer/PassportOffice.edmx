@@ -1,0 +1,397 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PassOfficeModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="PassOfficeModelStoreContainer">
+          <EntitySet Name="Cities" EntityType="PassOfficeModel.Store.Cities" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PassportData" EntityType="PassOfficeModel.Store.PassportData" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Sex" EntityType="PassOfficeModel.Store.Sex" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserAuthorization" EntityType="PassOfficeModel.Store.UserAuthorization" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Passport" EntityType="PassOfficeModel.Store.Passport" store:Type="Views" store:Schema="dbo" store:Name="Passport">
+            <DefiningQuery>SELECT 
+      [Passport].[Name] AS [Name], 
+      [Passport].[Surname] AS [Surname], 
+      [Passport].[Patronymic] AS [Patronymic], 
+      [Passport].[PassportNumber] AS [PassportNumber], 
+      [Passport].[Sex] AS [Sex], 
+      [Passport].[Birthday] AS [Birthday], 
+      [Passport].[City] AS [City], 
+      [Passport].[Address] AS [Address], 
+      [Passport].[IssuedBy] AS [IssuedBy], 
+      [Passport].[DateOfIssue] AS [DateOfIssue], 
+      [Passport].[Code] AS [Code]
+      FROM [dbo].[Passport] AS [Passport]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Cities_Cities" Association="PassOfficeModel.Store.FK_Cities_Cities">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="Cities1" EntitySet="Cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PassportData_Cities" Association="PassOfficeModel.Store.FK_PassportData_Cities">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="PassportData" EntitySet="PassportData" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PassportData_Sex" Association="PassOfficeModel.Store.FK_PassportData_Sex">
+            <End Role="Sex" EntitySet="Sex" />
+            <End Role="PassportData" EntitySet="PassportData" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sex_Sex" Association="PassOfficeModel.Store.FK_Sex_Sex">
+            <End Role="Sex" EntitySet="Sex" />
+            <End Role="Sex1" EntitySet="Sex" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Cities">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="City" Type="nchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="PassportData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nchar" Nullable="false" MaxLength="20" />
+          <Property Name="Surname" Type="nchar" Nullable="false" MaxLength="20" />
+          <Property Name="Patronymic" Type="nchar" Nullable="false" MaxLength="20" />
+          <Property Name="PassportNumber" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="Sex" Type="int" Nullable="false" />
+          <Property Name="Birthday" Type="date" Nullable="false" />
+          <Property Name="City" Type="int" Nullable="false" />
+          <Property Name="Address" Type="nchar" Nullable="false" MaxLength="100" />
+          <Property Name="IssuedBy" Type="nchar" Nullable="false" MaxLength="100" />
+          <Property Name="DateOfIssue" Type="date" Nullable="false" />
+          <Property Name="Code" Type="nchar" Nullable="false" MaxLength="7" />
+        </EntityType>
+        <EntityType Name="Sex">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Gender" Type="nchar" Nullable="false" MaxLength="3" />
+        </EntityType>
+        <EntityType Name="UserAuthorization">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="nchar" Nullable="false" MaxLength="20" />
+          <Property Name="Password" Type="nchar" Nullable="false" MaxLength="20" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'PassOffice.dbo.Passport' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="Passport">
+          <Key>
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Surname" />
+            <PropertyRef Name="Patronymic" />
+            <PropertyRef Name="PassportNumber" />
+            <PropertyRef Name="Sex" />
+            <PropertyRef Name="Birthday" />
+            <PropertyRef Name="City" />
+            <PropertyRef Name="Address" />
+            <PropertyRef Name="IssuedBy" />
+            <PropertyRef Name="DateOfIssue" />
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Name" Type="nchar" Nullable="false" MaxLength="20" />
+          <Property Name="Surname" Type="nchar" Nullable="false" MaxLength="20" />
+          <Property Name="Patronymic" Type="nchar" Nullable="false" MaxLength="20" />
+          <Property Name="PassportNumber" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="Sex" Type="nchar" Nullable="false" MaxLength="3" />
+          <Property Name="Birthday" Type="date" Nullable="false" />
+          <Property Name="City" Type="nchar" Nullable="false" MaxLength="100" />
+          <Property Name="Address" Type="nchar" Nullable="false" MaxLength="100" />
+          <Property Name="IssuedBy" Type="nchar" Nullable="false" MaxLength="100" />
+          <Property Name="DateOfIssue" Type="date" Nullable="false" />
+          <Property Name="Code" Type="nchar" Nullable="false" MaxLength="7" />
+        </EntityType>
+        <Association Name="FK_Cities_Cities">
+          <End Role="Cities" Type="PassOfficeModel.Store.Cities" Multiplicity="1" />
+          <End Role="Cities1" Type="PassOfficeModel.Store.Cities" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cities1">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PassportData_Cities">
+          <End Role="Cities" Type="PassOfficeModel.Store.Cities" Multiplicity="1" />
+          <End Role="PassportData" Type="PassOfficeModel.Store.PassportData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PassportData">
+              <PropertyRef Name="City" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PassportData_Sex">
+          <End Role="Sex" Type="PassOfficeModel.Store.Sex" Multiplicity="1" />
+          <End Role="PassportData" Type="PassOfficeModel.Store.PassportData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sex">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PassportData">
+              <PropertyRef Name="Sex" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sex_Sex">
+          <End Role="Sex" Type="PassOfficeModel.Store.Sex" Multiplicity="1" />
+          <End Role="Sex1" Type="PassOfficeModel.Store.Sex" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Sex">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sex1">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PassOfficeModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="PassportContext" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="PassportDatas" EntityType="PassOfficeModel.PassportData" />
+          <EntitySet Name="UserAuthorizations" EntityType="PassOfficeModel.UserAuthorization" />
+          <EntitySet Name="Cities" EntityType="PassOfficeModel.City" />
+          <EntitySet Name="Sexes" EntityType="PassOfficeModel.Sex" />
+          <AssociationSet Name="FK_Cities_Cities" Association="PassOfficeModel.FK_Cities_Cities">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="City1" EntitySet="Cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PassportData_Cities" Association="PassOfficeModel.FK_PassportData_Cities">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="PassportData" EntitySet="PassportDatas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PassportData_Sex" Association="PassOfficeModel.FK_PassportData_Sex">
+            <End Role="Sex" EntitySet="Sexes" />
+            <End Role="PassportData" EntitySet="PassportDatas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sex_Sex" Association="PassOfficeModel.FK_Sex_Sex">
+            <End Role="Sex" EntitySet="Sexes" />
+            <End Role="Sex1" EntitySet="Sexes" />
+          </AssociationSet>
+          <EntitySet Name="Passports" EntityType="PassOfficeModel.Passport" />
+        </EntityContainer>
+        <EntityType Name="PassportData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="Surname" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="Patronymic" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="PassportNumber" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Sex" Type="Int32" Nullable="false" />
+          <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="City" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="true" />
+          <Property Name="IssuedBy" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="true" />
+          <Property Name="DateOfIssue" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="7" Unicode="true" FixedLength="true" />
+          <NavigationProperty Name="City1" Relationship="PassOfficeModel.FK_PassportData_Cities" FromRole="PassportData" ToRole="City" />
+          <NavigationProperty Name="Sex1" Relationship="PassOfficeModel.FK_PassportData_Sex" FromRole="PassportData" ToRole="Sex" />
+        </EntityType>
+        <EntityType Name="UserAuthorization">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="true" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="City1" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Cities1" Relationship="PassOfficeModel.FK_Cities_Cities" FromRole="City" ToRole="City1" />
+          <NavigationProperty Name="City2" Relationship="PassOfficeModel.FK_Cities_Cities" FromRole="City1" ToRole="City" />
+          <NavigationProperty Name="PassportDatas" Relationship="PassOfficeModel.FK_PassportData_Cities" FromRole="City" ToRole="PassportData" />
+        </EntityType>
+        <EntityType Name="Sex">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Gender" Nullable="false" MaxLength="3" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="PassportDatas" Relationship="PassOfficeModel.FK_PassportData_Sex" FromRole="Sex" ToRole="PassportData" />
+          <NavigationProperty Name="Sex1" Relationship="PassOfficeModel.FK_Sex_Sex" FromRole="Sex" ToRole="Sex1" />
+          <NavigationProperty Name="Sex2" Relationship="PassOfficeModel.FK_Sex_Sex" FromRole="Sex1" ToRole="Sex" />
+        </EntityType>
+        <Association Name="FK_Cities_Cities">
+          <End Type="PassOfficeModel.City" Role="City" Multiplicity="1" />
+          <End Type="PassOfficeModel.City" Role="City1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="City1">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PassportData_Cities">
+          <End Type="PassOfficeModel.City" Role="City" Multiplicity="1" />
+          <End Type="PassOfficeModel.PassportData" Role="PassportData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PassportData">
+              <PropertyRef Name="City" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PassportData_Sex">
+          <End Type="PassOfficeModel.Sex" Role="Sex" Multiplicity="1" />
+          <End Type="PassOfficeModel.PassportData" Role="PassportData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sex">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PassportData">
+              <PropertyRef Name="Sex" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sex_Sex">
+          <End Type="PassOfficeModel.Sex" Role="Sex" Multiplicity="1" />
+          <End Type="PassOfficeModel.Sex" Role="Sex1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Sex">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sex1">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Passport">
+          <Key>
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Surname" />
+            <PropertyRef Name="Patronymic" />
+            <PropertyRef Name="PassportNumber" />
+            <PropertyRef Name="Birthday" />
+            <PropertyRef Name="City" />
+            <PropertyRef Name="Address" />
+            <PropertyRef Name="IssuedBy" />
+            <PropertyRef Name="DateOfIssue" />
+            <PropertyRef Name="Code" />
+            <PropertyRef Name="Sex" />
+          </Key>
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Type="String" Name="Surname" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Type="String" Name="Patronymic" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Type="String" Name="PassportNumber" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Type="DateTime" Name="Birthday" Nullable="false" Precision="0" />
+          <Property Type="String" Name="City" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Type="String" Name="Address" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Type="String" Name="IssuedBy" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Type="DateTime" Name="DateOfIssue" Nullable="false" Precision="0" />
+          <Property Type="String" Name="Code" Nullable="false" MaxLength="7" FixedLength="true" Unicode="true" />
+          <Property Type="String" Name="Sex" Nullable="false" MaxLength="3" FixedLength="true" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PassOfficeModelStoreContainer" CdmEntityContainer="PassportContext">
+          <EntitySetMapping Name="PassportDatas">
+            <EntityTypeMapping TypeName="PassOfficeModel.PassportData">
+              <MappingFragment StoreEntitySet="PassportData">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="IssuedBy" ColumnName="IssuedBy" />
+                <ScalarProperty Name="DateOfIssue" ColumnName="DateOfIssue" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserAuthorizations">
+            <EntityTypeMapping TypeName="PassOfficeModel.UserAuthorization">
+              <MappingFragment StoreEntitySet="UserAuthorization">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="PassOfficeModel.City">
+              <MappingFragment StoreEntitySet="Cities">
+                <ScalarProperty Name="City1" ColumnName="City" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sexes">
+            <EntityTypeMapping TypeName="PassOfficeModel.Sex">
+              <MappingFragment StoreEntitySet="Sex">
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Passports">
+            <EntityTypeMapping TypeName="PassOfficeModel.Passport">
+              <MappingFragment StoreEntitySet="Passport">
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="DateOfIssue" ColumnName="DateOfIssue" />
+                <ScalarProperty Name="IssuedBy" ColumnName="IssuedBy" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

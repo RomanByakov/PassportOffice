@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="94e54f0123954e818052227783a1f8e8" Name="Diagram1">
+        <EntityTypeShape EntityType="PassOfficeModel.PassportData" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PassOfficeModel.UserAuthorization" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PassOfficeModel.City" Width="1.5" PointX="3.3201863110625118" PointY="4.0885066558087741" />
+        <EntityTypeShape EntityType="PassOfficeModel.Sex" Width="1.5" PointX="1.8353035085998957" PointY="1.32891155841244" />
+        <AssociationConnector Association="PassOfficeModel.FK_Cities_Cities" />
+        <AssociationConnector Association="PassOfficeModel.FK_PassportData_Cities" />
+        <AssociationConnector Association="PassOfficeModel.FK_PassportData_Sex" />
+        <AssociationConnector Association="PassOfficeModel.FK_Sex_Sex" />
+        <EntityTypeShape EntityType="PassOfficeModel.Passport" Width="1.5" PointX="6.6890309167509114" PointY="29.694346709965888" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PassOfficeModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="PassOfficeModelStoreContainer">
+    <EntitySet Name="PassportData" EntityType="PassOfficeModel.Store.PassportData" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserAuthorization" EntityType="PassOfficeModel.Store.UserAuthorization" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="PassportData">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nchar" Nullable="false" MaxLength="20" />
+    <Property Name="Surname" Type="nchar" Nullable="false" MaxLength="20" />
+    <Property Name="Patronymic" Type="nchar" Nullable="false" MaxLength="20" />
+    <Property Name="PassportNumber" Type="nchar" Nullable="false" MaxLength="10" />
+    <Property Name="Sex" Type="int" Nullable="false" />
+    <Property Name="Birthday" Type="date" Nullable="false" />
+    <Property Name="City" Type="int" Nullable="false" />
+    <Property Name="Address" Type="nchar" Nullable="false" MaxLength="100" />
+    <Property Name="IssuedBy" Type="nchar" Nullable="false" MaxLength="100" />
+    <Property Name="DateOfIssue" Type="date" Nullable="false" />
+    <Property Name="Code" Type="nchar" Nullable="false" MaxLength="7" />
+  </EntityType>
+  <EntityType Name="UserAuthorization">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Login" Type="nchar" Nullable="false" MaxLength="20" />
+    <Property Name="Password" Type="nchar" Nullable="false" MaxLength="20" />
+  </EntityType>
+</Schema>
