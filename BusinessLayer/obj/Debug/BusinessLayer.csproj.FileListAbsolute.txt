@@ -14,3 +14,11 @@ C:\Users\roman.byakov\Desktop\New folder\BusinessLayer\bin\Debug\EntityFramework
 C:\Users\roman.byakov\Desktop\New folder\BusinessLayer\obj\Debug\BusinessLayer.csprojResolveAssemblyReference.cache
 C:\Users\roman.byakov\Desktop\New folder\BusinessLayer\obj\Debug\BusinessLayer.dll
 C:\Users\roman.byakov\Desktop\New folder\BusinessLayer\obj\Debug\BusinessLayer.pdb
+C:\Users\roman.byakov\Desktop\Pass\BusinessLayer\bin\Debug\BusinessLayer.dll.config
+C:\Users\roman.byakov\Desktop\Pass\BusinessLayer\bin\Debug\BusinessLayer.dll
+C:\Users\roman.byakov\Desktop\Pass\BusinessLayer\bin\Debug\BusinessLayer.pdb
+C:\Users\roman.byakov\Desktop\Pass\BusinessLayer\bin\Debug\EntityFramework.dll
+C:\Users\roman.byakov\Desktop\Pass\BusinessLayer\bin\Debug\EntityFramework.xml
+C:\Users\roman.byakov\Desktop\Pass\BusinessLayer\obj\Debug\BusinessLayer.csprojResolveAssemblyReference.cache
+C:\Users\roman.byakov\Desktop\Pass\BusinessLayer\obj\Debug\BusinessLayer.dll
+C:\Users\roman.byakov\Desktop\Pass\BusinessLayer\obj\Debug\BusinessLayer.pdb

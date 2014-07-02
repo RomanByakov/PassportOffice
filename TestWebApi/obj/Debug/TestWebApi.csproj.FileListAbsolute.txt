@@ -53,3 +53,21 @@ C:\Users\roman.byakov\Desktop\New folder\TestWebApi\bin\EntityFramework.xml
 C:\Users\roman.byakov\Desktop\New folder\TestWebApi\obj\Debug\TestWebApi.csprojResolveAssemblyReference.cache
 C:\Users\roman.byakov\Desktop\New folder\TestWebApi\obj\Debug\TestWebApi.dll
 C:\Users\roman.byakov\Desktop\New folder\TestWebApi\obj\Debug\TestWebApi.pdb
+C:\Users\roman.byakov\Desktop\Pass\TestWebApi\bin\TestWebApi.dll
+C:\Users\roman.byakov\Desktop\Pass\TestWebApi\bin\TestWebApi.pdb
+C:\Users\roman.byakov\Desktop\Pass\TestWebApi\bin\BusinessLayer.dll
+C:\Users\roman.byakov\Desktop\Pass\TestWebApi\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\roman.byakov\Desktop\Pass\TestWebApi\bin\Newtonsoft.Json.dll
+C:\Users\roman.byakov\Desktop\Pass\TestWebApi\bin\System.Net.Http.Formatting.dll
+C:\Users\roman.byakov\Desktop\Pass\TestWebApi\bin\System.Web.Http.dll
+C:\Users\roman.byakov\Desktop\Pass\TestWebApi\bin\System.Web.Http.WebHost.dll
+C:\Users\roman.byakov\Desktop\Pass\TestWebApi\bin\EntityFramework.dll
+C:\Users\roman.byakov\Desktop\Pass\TestWebApi\bin\BusinessLayer.pdb
+C:\Users\roman.byakov\Desktop\Pass\TestWebApi\bin\Newtonsoft.Json.xml
+C:\Users\roman.byakov\Desktop\Pass\TestWebApi\bin\System.Net.Http.Formatting.xml
+C:\Users\roman.byakov\Desktop\Pass\TestWebApi\bin\System.Web.Http.xml
+C:\Users\roman.byakov\Desktop\Pass\TestWebApi\bin\System.Web.Http.WebHost.xml
+C:\Users\roman.byakov\Desktop\Pass\TestWebApi\bin\EntityFramework.xml
+C:\Users\roman.byakov\Desktop\Pass\TestWebApi\obj\Debug\TestWebApi.csprojResolveAssemblyReference.cache
+C:\Users\roman.byakov\Desktop\Pass\TestWebApi\obj\Debug\TestWebApi.dll
+C:\Users\roman.byakov\Desktop\Pass\TestWebApi\obj\Debug\TestWebApi.pdb
