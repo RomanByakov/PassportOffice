@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cells.cs" />
     <Compile Include="City.cs">
       <DependentUpon>PassportOffice.tt</DependentUpon>
     </Compile>

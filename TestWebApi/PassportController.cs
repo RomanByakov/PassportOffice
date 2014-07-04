@@ -24,20 +24,26 @@ namespace TestWebApi
         /// <summary>
         /// The get.
         /// </summary>
-        /// <param name="json">
-        /// The json.
+        /// <param name="passportObjectJson">
+        /// The passport Object Json.
         /// </param>
-        /// <param name="id">
-        /// The id.
+        /// <param name="sort">
+        /// The sort.
+        /// </param>
+        /// <param name="direction">
+        /// The direction.
+        /// </param>
+        /// <param name="skip">
+        /// The skip.
         /// </param>
         /// <returns>
         /// The <see cref="List"/>.
         /// </returns>
-        public List<Passport> Get(string json, int id)
+        public List<Passport> GetPassports(string passportObjectJson, int sort, bool direction, int skip)
         {
-            Passport passport = new JavaScriptSerializer().Deserialize<Passport>(json);
+            Passport passport = new JavaScriptSerializer().Deserialize<Passport>(passportObjectJson);
             List<Passport> pas = new List<Passport>();
-            pas = PassportRepository.FindPersons(passport, id);
+            pas = PassportRepository.FindPassports(passport, sort, direction, skip);
             return pas;
         }
 

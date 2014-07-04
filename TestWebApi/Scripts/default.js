@@ -1,58 +1,113 @@
-﻿var headerList = document.getElementById('headerList');
-function sort(el) {
+﻿var passportData;
+var direction = true;
+var sort = 1;
+var count = document.getElementById('countRow');
+window.onscroll = function() {
+    var top = $(document).height();
     
-    headerList.innerHTML = '<tr><th><span id="thName" onclick="sort(this)">Name</span></th>' +
-        '<th><span id="thSurname" onclick="sort(this)">Surname</span></th>' +
-        '<th><span id="thPatronymic"onclick="sort(this)">Patronymic</span></th>' +
-        '<th><span id="thPassportNumber"onclick="sort(this)">Passport number</span></th>' +
-        '<th><span id="thSex"onclick="sort(this)">Sex</span></th>' +
-        '<th><span id="thBirthday"onclick="sort(this)">Birthday</span></th>' +
-        '<th><span id="thCity"onclick="sort(this)">City</span></th>' +
-        '<th><span id="thAddress"onclick="sort(this)">Address</span>' +
-        '</th><th><span id="thIssuedBy"onclick="sort(this)">Issued by</span></th>' +
-        '<th><span id="thDateOfIssue"onclick="sort(this)">Date of issue</span></th>' +
-        '<th><span id="thCode"onclick="sort(this)">Code</span></th></tr>';
+    var body = document.body,
+    html = document.documentElement;
+
+    var top2 = Math.max(body.scrollHeight, body.offsetHeight,
+                           html.clientHeight, html.scrollHeight, html.offsetHeight);
+
+
+    var w = $(window).height();
+    var w2 = window.innerHeight;
+    var scroll = $(window).scrollTop();
+    var scroll2 = window.scrollY;
+    debugger;
+    if (/*$(window).scrollTop()*/window.scrollY == /*$(document).height()*/Math.max(body.scrollHeight, body.offsetHeight,
+                           html.clientHeight, html.scrollHeight, html.offsetHeight) - /*$(window).height()*/window.innerHeight) {
+        document.getElementById('loadmoreajaxloader').style.display = 'block';
+        var countRow = parseInt(document.getElementById('countRow').innerHTML);
+        count.innerHTML = countRow + 20;
+        var skip = parseInt(document.getElementById('countRow').innerHTML);
+        var xhr = new XMLHttpRequest;
+        var url = "/api/passport?passportObjectJson=" + (JSON.stringify(passportData)).toString() + "&sort=" + sort + "&direction=" + direction + "&skip=" + skip;
+        xhr.open("GET", url, true);
+        xhr.setRequestHeader('Content-type', 'application/json');
+        xhr.send(null);
+        xhr.onload = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                var html = JSON.parse(xhr.responseText);
+                var include = '';
+                            for (var i = 0; i < html.length; i++) {
+
+                                var row = '<tr><td>' + html[i].Name + '</td><td>' + html[i].Surname + '</td><td>' + html[i].Patronymic + '</td><td>' + html[i].PassportNumber + '</td><td>' + html[i].Sex + '</td><td>' + html[i].Birthday.substr(0, html[i].Birthday.indexOf("T")) + '</td><td>' + html[i].City + '</td><td>' + html[i].Address + '</td><td>' + html[i].IssuedBy + '</td><td>' + html[i].DateOfIssue.substr(0, html[i].Birthday.indexOf("T")) + '</td><td>' + html[i].Code + '</td></tr>';
+                                include += row;
+                            }
+                document.getElementById('testList').innerHTML += include;
+                document.getElementById('loadmoreajaxloader').style.display = 'none';
+            }
+        };
+        
+    }
+}
+
+var headerList = document.getElementById('headerList');
+function Sorting(el) {
+    sort = 0;
+    direction = true;
+    debugger;
+    var elemenWithRowDown = document.getElementsByClassName('icon-chevron-down icon-white')[0];
+    var elemenWithRowUp = document.getElementsByClassName('icon-chevron-up icon-white')[0];
+    
+    headerList.innerHTML = '<tr><th><span id="thName" onclick="Sorting(this)">Name</span></th><th><span id="thSurname" onclick="Sorting(this)">Surname</span></th><th><span id="thPatronymic"onclick="Sorting(this)">Patronymic</span></th><th><span id="thPassportNumber"onclick="Sorting(this)">Passport number</span></th><th><span id="thSex"onclick="Sorting(this)">Sex</span></th><th><span id="thBirthday"onclick="Sorting(this)">Birthday</span></th><th><span id="thCity"onclick="Sorting(this)">City</span></th><th><span id="thAddress"onclick="Sorting(this)">Address</span></th><th><span id="thIssuedBy"onclick="Sorting(this)">Issued by</span></th><th><span id="thDateOfIssue"onclick="Sorting(this)">Date of issue</span></th><th><span id="thCode"onclick="Sorting(this)">Code</span></th></tr>';
+
     var elem = document.getElementById(el.id);
-    elem.innerHTML += "<i class='icon-chevron-down icon-white'/>";
-    var id = 0;
+    elem.innerHTML += "<i id='icon' class='icon-chevron-down icon-white'/>";
+    if (elemenWithRowDown) {
+        if (elemenWithRowDown.parentNode == el) {
+            direction = false;
+            document.getElementById(elemenWithRowDown.id).setAttribute('class', 'icon-chevron-up icon-white');
+        }
+    }
+    if (elemenWithRowUp) {
+        if (elemenWithRowUp.parentNode == el) {
+            direction = true;
+            document.getElementById(elemenWithRowUp.id).setAttribute('class', 'icon-chevron-down icon-white');
+        }
+    }
+
     switch (el.id) {
         case 'thName':
-            id = 1;
+            sort = 1;
             break;
         case 'thSurname':
-            id = 2;
+            sort = 2;
             break;
         case 'thPatronymic':
-            id = 3;
+            sort = 3;
             break;
         case 'thPassportNumber':
-            id = 4;
+            sort = 4;
             break;
         case 'thSex':
-            id = 5;
+            sort = 5;
             break;
         case 'thBirthday':
-            id = 6;
+            sort = 6;
             break;
         case 'thCity':
-            id = 7;
+            sort = 7;
             break;
         case 'thAddress':
-            id = 8;
+            sort = 8;
             break;
         case 'thIssuedBy':
-            id = 9;
+            sort = 9;
             break;
         case 'thDateOfIssue':
-            id = 10;
+            sort = 10;
             break;
         case 'thCode':
-            id = 11;
+            sort = 11;
             break;
         
     default:
     }
-    Search(id);
+    Search(sort, direction);
 
 }
 function Auth() {
@@ -95,13 +150,17 @@ function PopUpHide() {
     document.location.replace('/default.aspx');
 }
 
-function Search(id) {
-
+function Search(sort,direction,skip) {
+    if (!skip) {
+        skip = 0;
+    }
+    $('div#loadmoreajaxloader').show();
+    count.innerHTML = 0;
     var label = document.getElementById('labe');
     var headerList = document.getElementById('headerList');
     var xhr = new XMLHttpRequest;
 
-    var passportData = {
+    passportData = {
         Name: document.getElementById('Name').value,
         Surname: document.getElementById('Surname').value,
         Patronymic: document.getElementById('Patronymic').value,
@@ -114,7 +173,7 @@ function Search(id) {
         DateOfIssue: document.getElementById('DateOfIssue').value,
         Code: document.getElementById('Code').value
     };
-    var url = "/api/passport?json=" + (JSON.stringify(passportData)).toString() + "&id="+id;
+    var url = "/api/passport?passportObjectJson=" + (JSON.stringify(passportData)).toString() + "&sort=" + sort + "&direction=" + direction +"&skip=" + skip;
     xhr.open("GET", url, true);
     xhr.setRequestHeader('Content-type', 'application/json');
     xhr.send(JSON.stringify(passportData));
@@ -123,6 +182,7 @@ function Search(id) {
 
     xhr.onload = function() {
         if (xhr.readyState == 4 && xhr.status == 200) {
+            $('div#loadmoreajaxloader').hide();
             var html = "";
             load.src = "";
             var resp = JSON.parse(xhr.responseText);
@@ -134,8 +194,7 @@ function Search(id) {
             } else {
                 label.innerHTML = "";
                 if (headerList.innerHTML.length == 0) {
-                    headerList.innerHTML = '<tr><th><span id="thName" onclick="sort(this)">Name</span></th><th><span id="thSurname" onclick="sort(this)">Surname</span></th><th><span id="thPatronymic"onclick="sort(this)">Patronymic</span></th><th><span id="thPassportNumber"onclick="sort(this)">Passport number</span></th><th><span id="thSex"onclick="sort(this)">Sex</span></th><th><span id="thBirthday"onclick="sort(this)">Birthday</span></th><th><span id="thCity"onclick="sort(this)">City</span></th><th><span id="thAddress"onclick="sort(this)">Address</span></th><th><span id="thIssuedBy"onclick="sort(this)">Issued by</span></th><th><span id="thDateOfIssue"onclick="sort(this)">Date of issue</span></th><th><span id="thCode"onclick="sort(this)">Code</span></th></tr>';
-
+                    headerList.innerHTML = '<tr><th><span id="thName" onclick="Sorting(this)">Name<i id="icon" class="icon-chevron-down icon-white"/></span></th><th><span id="thSurname" onclick="Sorting(this)">Surname</span></th><th><span id="thPatronymic"onclick="Sorting(this)">Patronymic</span></th><th><span id="thPassportNumber"onclick="Sorting(this)">Passport number</span></th><th><span id="thSex"onclick="Sorting(this)">Sex</span></th><th><span id="thBirthday"onclick="Sorting(this)">Birthday</span></th><th><span id="thCity"onclick="Sorting(this)">City</span></th><th><span id="thAddress"onclick="Sorting(this)">Address</span></th><th><span id="thIssuedBy"onclick="Sorting(this)">Issued by</span></th><th><span id="thDateOfIssue"onclick="Sorting(this)">Date of issue</span></th><th><span id="thCode"onclick="Sorting(this)">Code</span></th></tr>';
                 }
                 for (var i = 0; i < resp.length; i++) {
 

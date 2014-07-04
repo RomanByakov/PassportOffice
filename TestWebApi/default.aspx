@@ -66,7 +66,7 @@
                         <td>Issued by:
                             <div class="input-prepend"><span class="add-on"><i class="icon-flag"></i></span><input class="span2" id="IssuedBy" type="text" placeholder="ОВД Лениского района"/>
                             </div></td>
-                        <td><input id="search" type="button" value="Search" onclick=" Search(1) " class="btn"/> </td>
+                        <td><input id="search" type="button" value="Search" onclick=" Search(1,true) " class="btn"/> </td>
                     </tr>
                 </table>
 
@@ -78,6 +78,8 @@
 
                 </tbody>
             </table>
+            <div id="loadmoreajaxloader" style="display:none;"><center><img src='\img\loadings.gif' /></center></div>
+            <div id="countRow" style="display:none;">0</div>
         </form>
         <script src="/Scripts/default.js"></script>
     
