@@ -50,8 +50,23 @@
     <Compile Include="City.cs">
       <DependentUpon>PassportOffice.tt</DependentUpon>
     </Compile>
+    <Compile Include="Pass.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Pass.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pass.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Pass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pass.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Pass.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Passport.cs">
-      <DependentUpon>PassportOffice.tt</DependentUpon>
+      <DependentUpon>Pass.tt</DependentUpon>
     </Compile>
     <Compile Include="PassportData.cs">
       <DependentUpon>PassportOffice.tt</DependentUpon>
@@ -87,6 +102,23 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>PassportOffice.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <EntityDeploy Include="Pass.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Pass.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Pass.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Pass.edmx</DependentUpon>
+      <LastGenOutput>Pass.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Pass.edmx.diagram">
+      <DependentUpon>Pass.edmx</DependentUpon>
+    </None>
+    <None Include="Pass.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Pass.edmx</DependentUpon>
+      <LastGenOutput>Pass.cs</LastGenOutput>
+    </None>
     <None Include="PassportOffice.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>PassportOffice.edmx</DependentUpon>

@@ -44,8 +44,8 @@
                         <td>Sex:
                             <div class="input-prepend"><span class="add-on"><i class="icon-eye-open"></i></span><select id="Sex" class="span2" >
                                                                                                                     <option></option>
-                                                                                                                    <option>муж</option>
-                                                                                                                    <option>жен</option>
+                                                                                                                    <option>male</option>
+                                                                                                                    <option>female</option>
 
                                                                                                                 </select>
                             </div></td>
@@ -66,7 +66,7 @@
                         <td>Issued by:
                             <div class="input-prepend"><span class="add-on"><i class="icon-flag"></i></span><input class="span2" id="IssuedBy" type="text" placeholder="ОВД Лениского района"/>
                             </div></td>
-                        <td><input id="search" type="button" value="Search" onclick=" Search(1,true) " class="btn"/> </td>
+                        <td><input id="search" type="button" value="Search" onclick="javascript: document.getElementById('headerList').innerHTML = ''; document.getElementById('testList').innerHTML = ''; Search(2, true);" class="btn"/> </td>
                     </tr>
                 </table>
 

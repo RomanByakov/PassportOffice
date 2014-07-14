@@ -10,6 +10,8 @@ namespace BusinessLayer
 {
     using System;
     using System.Collections.Generic;
+    using System.Data.Entity.Infrastructure;
+    using System.Data.Objects;
     using System.Linq;
 
     /// <summary>
@@ -41,10 +43,11 @@ namespace BusinessLayer
         {
             List<Passport> list = new List<Passport>();
 
-            using (var db = new PassportContext())
+            //using (var db = new PassContext())
             {
+                if (passport.Surname != string.Empty) sort = 2;
                 // IQueryable<Passport> query = db.Passports;
-                foreach (var item in GenerateQuery(passport, Sorting(sort, direction)).Skip(skip).Take(20))
+                foreach (var item in GenerateQuery(passport, Sorting(sort, direction)).Skip(skip).Take(20).ToList())
                 {
                     list.Add(
                         new Passport
@@ -85,30 +88,31 @@ namespace BusinessLayer
         /// </returns>
         private static IQueryable<Passport> GenerateQuery(Passport passport, IQueryable<Passport> query)
         {
-            var db = new PassportContext();
+            //var db = new PassContext();
             if (passport.Name != string.Empty)
             {
-                query = query.Where(a => a.Name.Contains(passport.Name));
+                query = query.Where(a => a.Name == passport.Name);
             }
 
             if (passport.Surname != string.Empty)
             {
-                query = query.Where(a => a.Surname.Contains(passport.Surname));
+                query = query.Where(a => a.Surname == passport.Surname);
+                //query = query.Where(a=>a.Surname
             }
 
             if (passport.Patronymic != string.Empty)
             {
-                query = query.Where(a => a.Patronymic.Contains(passport.Patronymic));
+                query = query.Where(a => a.Patronymic == passport.Patronymic);
             }
 
             if (passport.PassportNumber != string.Empty)
             {
-                query = query.Where(a => a.PassportNumber.Contains(passport.PassportNumber));
+                query = query.Where(a => a.PassportNumber == passport.PassportNumber);
             }
 
             if (passport.Sex != string.Empty)
             {
-                query = query.Where(a => a.Sex.Contains(passport.Sex));
+                query = query.Where(a => a.Sex == passport.Sex);
             }
 
             if (passport.Birthday != new DateTime())
@@ -118,12 +122,12 @@ namespace BusinessLayer
 
             if (passport.City != string.Empty)
             {
-                query = query.Where(a => a.City.Contains(passport.City));
+                query = query.Where(a => a.City == passport.City);
             }
 
             if (passport.Address != string.Empty)
             {
-                query = query.Where(a => a.Address.Contains(passport.Address));
+                query = query.Where(a => a.Address == passport.Address);
             }
 
             if (passport.IssuedBy != string.Empty)
@@ -158,7 +162,10 @@ namespace BusinessLayer
         /// </returns>
         private static IQueryable<Passport> Sorting(int sort, bool direction)
         {
-            var db = new PassportContext();
+            
+            var db = new PassContext();
+            IObjectContextAdapter dbcontextadapter = (IObjectContextAdapter)db;
+            dbcontextadapter.ObjectContext.CommandTimeout = 1000;
             IQueryable<Passport> query = db.Passports;
             switch (sort)
             {

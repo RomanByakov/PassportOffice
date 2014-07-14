@@ -14,16 +14,17 @@ namespace BusinessLayer
     
     public partial class Passport
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Patronymic { get; set; }
         public string PassportNumber { get; set; }
+        public string Sex { get; set; }
         public System.DateTime Birthday { get; set; }
         public string City { get; set; }
         public string Address { get; set; }
         public string IssuedBy { get; set; }
         public System.DateTime DateOfIssue { get; set; }
         public string Code { get; set; }
-        public string Sex { get; set; }
     }
 }
